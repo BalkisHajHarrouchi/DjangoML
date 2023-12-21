@@ -70,3 +70,19 @@ class MLRequest(models.Model):
     feedback = models.CharField(max_length=10000, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     parent_mlalgorithm = models.ForeignKey(MLAlgorithm, on_delete=models.CASCADE)
+class ANNModel(models.Model):
+    name = models.CharField(max_length=128)
+    description = models.CharField(max_length=1000)
+    code = models.CharField(max_length=50000)
+    version = models.CharField(max_length=128)
+    owner = models.CharField(max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    hidden_layer_sizes = models.CharField(max_length=128)  # Placeholder, adjust based on your needs
+    parent_endpoint = models.ForeignKey(Endpoint, on_delete=models.CASCADE)
+
+class ANNModelStatus(models.Model):
+    status = models.CharField(max_length=128)
+    active = models.BooleanField()
+    created_by = models.CharField(max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    parent_annmodel = models.ForeignKey(ANNModel, on_delete=models.CASCADE, related_name="status")

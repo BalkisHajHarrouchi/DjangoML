@@ -41,6 +41,7 @@ INSTALLED_APPS = [
      # apps
     'apps.endpoints.apps.EndpointsConfig',
     # 'apps.endpoints'
+    'apps.ml'
 ]
 
 MIDDLEWARE = [
